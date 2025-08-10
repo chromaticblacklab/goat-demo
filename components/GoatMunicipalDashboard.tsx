@@ -1,31 +1,122 @@
-'use client'
-import React, { useState } from 'react'
-import { Search, Filter, Bell, Settings, ChevronDown, Home, Users, FileText, MapPin, Calendar, DollarSign, AlertCircle, CheckCircle, Clock, TrendingUp, Building2, UserCheck, FileSearch, BarChart3 } from 'lucide-react'
+"use client";
+import React, { useState } from "react";
+import Link from "next/link";
+import {
+  Search,
+  Filter,
+  Bell,
+  Settings,
+  ChevronDown,
+  Home,
+  Users,
+  FileText,
+  MapPin,
+  Calendar,
+  DollarSign,
+  AlertCircle,
+  CheckCircle,
+  Clock,
+  TrendingUp,
+  Building2,
+  UserCheck,
+  FileSearch,
+  BarChart3,
+} from "lucide-react";
 
 export default function GoatMunicipalDashboard() {
-  const [selectedMunicipality, setSelectedMunicipality] = useState('Mobile')
-  const [activeTab, setActiveTab] = useState('overview')
-  const [searchTerm, setSearchTerm] = useState('')
+  const [selectedMunicipality, setSelectedMunicipality] = useState("Mobile");
+  const [activeTab, setActiveTab] = useState("overview");
+  const [searchTerm, setSearchTerm] = useState("");
 
   const stats = [
-    { label: 'Total Properties', value: '15,247', change: '+12%', icon: Building2, color: 'text-green-600' },
-    { label: 'Monthly Revenue', value: '$185,420', change: '+8%', icon: DollarSign, color: 'text-blue-600' },
-    { label: 'Compliance Rate', value: '94.2%', change: '+3%', icon: CheckCircle, color: 'text-purple-600' },
-    { label: 'Active Violations', value: '89', change: '-15%', icon: AlertCircle, color: 'text-orange-600' }
-  ]
+    {
+      label: "Total Properties",
+      value: "15,247",
+      change: "+12%",
+      icon: Building2,
+      color: "text-green-600",
+    },
+    {
+      label: "Monthly Revenue",
+      value: "$185,420",
+      change: "+8%",
+      icon: DollarSign,
+      color: "text-blue-600",
+    },
+    {
+      label: "Compliance Rate",
+      value: "94.2%",
+      change: "+3%",
+      icon: CheckCircle,
+      color: "text-purple-600",
+    },
+    {
+      label: "Active Violations",
+      value: "89",
+      change: "-15%",
+      icon: AlertCircle,
+      color: "text-orange-600",
+    },
+  ];
 
   const recentProperties = [
-    { id: 1, address: '123 Main St', owner: 'John Smith', status: 'Compliant', fee: '$450', lastInspection: '2024-03-15' },
-    { id: 2, address: '456 Oak Ave', owner: 'Sarah Johnson', status: 'Pending', fee: '$380', lastInspection: '2024-02-28' },
-    { id: 3, address: '789 Elm Dr', owner: 'Michael Brown', status: 'Violation', fee: '$520', lastInspection: '2024-01-20' },
-    { id: 4, address: '321 Pine Rd', owner: 'Lisa Davis', status: 'Compliant', fee: '$410', lastInspection: '2024-03-10' }
-  ]
+    {
+      id: 1,
+      address: "123 Main St",
+      owner: "John Smith",
+      status: "Compliant",
+      fee: "$450",
+      lastInspection: "2024-03-15",
+    },
+    {
+      id: 2,
+      address: "456 Oak Ave",
+      owner: "Sarah Johnson",
+      status: "Pending",
+      fee: "$380",
+      lastInspection: "2024-02-28",
+    },
+    {
+      id: 3,
+      address: "789 Elm Dr",
+      owner: "Michael Brown",
+      status: "Violation",
+      fee: "$520",
+      lastInspection: "2024-01-20",
+    },
+    {
+      id: 4,
+      address: "321 Pine Rd",
+      owner: "Lisa Davis",
+      status: "Compliant",
+      fee: "$410",
+      lastInspection: "2024-03-10",
+    },
+  ];
 
   const violations = [
-    { property: '789 Elm Dr', type: 'Fair Housing', severity: 'High', date: '2024-03-18', status: 'Under Investigation' },
-    { property: '555 Maple Ln', type: 'Safety Code', severity: 'Medium', date: '2024-03-17', status: 'Notice Sent' },
-    { property: '999 Cedar Ct', type: 'Registration', severity: 'Low', date: '2024-03-16', status: 'Pending Review' }
-  ]
+    {
+      property: "789 Elm Dr",
+      type: "Fair Housing",
+      severity: "High",
+      date: "2024-03-18",
+      status: "Under Investigation",
+    },
+    {
+      property: "555 Maple Ln",
+      type: "Safety Code",
+      severity: "Medium",
+      date: "2024-03-17",
+      status: "Notice Sent",
+    },
+    {
+      property: "999 Cedar Ct",
+      type: "Registration",
+      severity: "Low",
+      date: "2024-03-16",
+      status: "Pending Review",
+    },
+  ];
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -34,7 +125,9 @@ export default function GoatMunicipalDashboard() {
         <div className="px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
-              <h1 className="text-2xl font-bold text-gray-900">🐐 GOAT Municipal Dashboard</h1>
+              <h1 className="text-2xl font-bold text-gray-900">
+                🐐 GOAT Municipal Dashboard
+              </h1>
               <div className="relative">
                 <button className="flex items-center space-x-2 px-4 py-2 bg-gray-100 rounded-lg hover:bg-gray-200">
                   <span className="font-medium">{selectedMunicipality}</span>
@@ -63,30 +156,56 @@ export default function GoatMunicipalDashboard() {
             </div>
           </div>
         </div>
-        
+
         {/* Navigation Tabs */}
         <div className="px-6 border-t">
           <nav className="flex space-x-8">
             {[
-              { id: 'overview', label: 'Overview', icon: Home },
-              { id: 'properties', label: 'Properties', icon: Building2, href: '/property'},
-              { id: 'inspections', label: 'Inspections', icon: FileSearch },
-              { id: 'violations', label: 'Violations', icon: AlertCircle },
-              { id: 'revenue', label: 'Revenue', icon: DollarSign },
-              { id: 'reports', label: 'Reports', icon: BarChart3 }
+              { id: "overview", label: "Overview", icon: Home },
+              {
+                id: "properties",
+                label: "Properties",
+                icon: Building2,
+                href: "/property",
+              },
+              {
+                id: "inspections",
+                label: "Inspections",
+                icon: FileSearch,
+                href: "/inspections",
+              },
+              {
+                id: "violations",
+                label: "Violations",
+                icon: AlertCircle,
+                href: "/violations",
+              },
+              {
+                id: "revenue",
+                label: "Revenue",
+                icon: DollarSign,
+                href: "/revenue",
+              },
+              {
+                id: "reports",
+                label: "Reports",
+                icon: BarChart3,
+                href: "/reports",
+              },
             ].map((tab) => (
-              <button
+              <a
                 key={tab.id}
+                href={tab.href}
                 onClick={() => setActiveTab(tab.id)}
                 className={`flex items-center space-x-2 py-4 border-b-2 transition-colors ${
                   activeTab === tab.id
-                    ? 'border-blue-600 text-blue-600'
-                    : 'border-transparent text-gray-600 hover:text-gray-900'
+                    ? "border-blue-600 text-blue-600"
+                    : "border-transparent text-gray-600 hover:text-gray-900"
                 }`}
               >
                 <tab.icon className="h-4 w-4" />
                 <span className="font-medium">{tab.label}</span>
-              </button>
+              </a>
             ))}
           </nav>
         </div>
@@ -100,9 +219,13 @@ export default function GoatMunicipalDashboard() {
             <div key={index} className="bg-white rounded-lg shadow p-6">
               <div className="flex items-center justify-between mb-4">
                 <stat.icon className={`h-8 w-8 ${stat.color}`} />
-                <span className={`text-sm font-medium ${
-                  stat.change.startsWith('+') ? 'text-green-600' : 'text-red-600'
-                }`}>
+                <span
+                  className={`text-sm font-medium ${
+                    stat.change.startsWith("+")
+                      ? "text-green-600"
+                      : "text-red-600"
+                  }`}
+                >
                   {stat.change}
                 </span>
               </div>
@@ -119,23 +242,36 @@ export default function GoatMunicipalDashboard() {
             <div className="p-6 border-b">
               <div className="flex items-center justify-between">
                 <h2 className="text-lg font-semibold">Recent Properties</h2>
-                <button className="text-sm text-blue-600 hover:text-blue-700">View all →</button>
+                <button className="text-sm text-blue-600 hover:text-blue-700">
+                  View all →
+                </button>
               </div>
             </div>
             <div className="p-6">
               <div className="space-y-4">
                 {recentProperties.map((property) => (
-                  <div key={property.id} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                  <div
+                    key={property.id}
+                    className="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+                  >
                     <div>
-                      <h3 className="font-medium text-gray-900">{property.address}</h3>
-                      <p className="text-sm text-gray-600">Owner: {property.owner}</p>
+                      <h3 className="font-medium text-gray-900">
+                        {property.address}
+                      </h3>
+                      <p className="text-sm text-gray-600">
+                        Owner: {property.owner}
+                      </p>
                     </div>
                     <div className="flex items-center space-x-4">
-                      <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-                        property.status === 'Compliant' ? 'bg-green-100 text-green-700' :
-                        property.status === 'Pending' ? 'bg-yellow-100 text-yellow-700' :
-                        'bg-red-100 text-red-700'
-                      }`}>
+                      <span
+                        className={`px-3 py-1 rounded-full text-xs font-medium ${
+                          property.status === "Compliant"
+                            ? "bg-green-100 text-green-700"
+                            : property.status === "Pending"
+                            ? "bg-yellow-100 text-yellow-700"
+                            : "bg-red-100 text-red-700"
+                        }`}
+                      >
                         {property.status}
                       </span>
                       <div className="text-right">
@@ -154,7 +290,9 @@ export default function GoatMunicipalDashboard() {
             <div className="p-6 border-b">
               <div className="flex items-center justify-between">
                 <h2 className="text-lg font-semibold">Active Violations</h2>
-                <span className="text-sm text-red-600 font-medium">3 Critical</span>
+                <span className="text-sm text-red-600 font-medium">
+                  3 Critical
+                </span>
               </div>
             </div>
             <div className="p-6">
@@ -163,18 +301,28 @@ export default function GoatMunicipalDashboard() {
                   <div key={index} className="pb-4 border-b last:border-0">
                     <div className="flex items-start justify-between">
                       <div>
-                        <h4 className="font-medium text-gray-900">{violation.property}</h4>
-                        <p className="text-sm text-gray-600">{violation.type}</p>
+                        <h4 className="font-medium text-gray-900">
+                          {violation.property}
+                        </h4>
+                        <p className="text-sm text-gray-600">
+                          {violation.type}
+                        </p>
                       </div>
-                      <span className={`px-2 py-1 rounded text-xs font-medium ${
-                        violation.severity === 'High' ? 'bg-red-100 text-red-700' :
-                        violation.severity === 'Medium' ? 'bg-yellow-100 text-yellow-700' :
-                        'bg-blue-100 text-blue-700'
-                      }`}>
+                      <span
+                        className={`px-2 py-1 rounded text-xs font-medium ${
+                          violation.severity === "High"
+                            ? "bg-red-100 text-red-700"
+                            : violation.severity === "Medium"
+                            ? "bg-yellow-100 text-yellow-700"
+                            : "bg-blue-100 text-blue-700"
+                        }`}
+                      >
                         {violation.severity}
                       </span>
                     </div>
-                    <p className="text-xs text-gray-500 mt-2">{violation.status}</p>
+                    <p className="text-xs text-gray-500 mt-2">
+                      {violation.status}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -209,5 +357,5 @@ export default function GoatMunicipalDashboard() {
         </div>
       </main>
     </div>
-  )
+  );
 }
