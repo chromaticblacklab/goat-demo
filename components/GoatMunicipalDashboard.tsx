@@ -172,7 +172,7 @@ export default function GoatMunicipalDashboard() {
                 id: "inspections",
                 label: "Inspections",
                 icon: FileSearch,
-                href: "/inspections",
+                href: "/inspection",
               },
               {
                 id: "violations",
