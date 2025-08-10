@@ -166,7 +166,7 @@ export default function GoatMunicipalDashboard() {
                 id: "properties",
                 label: "Properties",
                 icon: Building2,
-                href: "/property",
+                href: "/goat-demo/property",
               },
               {
                 id: "inspections",
