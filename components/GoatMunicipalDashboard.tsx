@@ -69,7 +69,7 @@ export default function GoatMunicipalDashboard() {
           <nav className="flex space-x-8">
             {[
               { id: 'overview', label: 'Overview', icon: Home },
-              { id: 'properties', label: 'Properties', icon: Building2 },
+              { id: 'properties', label: 'Properties', icon: Building2, href: '/property'},
               { id: 'inspections', label: 'Inspections', icon: FileSearch },
               { id: 'violations', label: 'Violations', icon: AlertCircle },
               { id: 'revenue', label: 'Revenue', icon: DollarSign },
